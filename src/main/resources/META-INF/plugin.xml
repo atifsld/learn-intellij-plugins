@@ -30,7 +30,7 @@
 
     <actions>
         <action id="helloworld" class="com.atif.learnintellijplugins.actions.HelloWorldAction" text="Hello World">
-            <add-to-group group-id="ToolsMenu" anchor="first"></add-to-group>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"></add-to-group>
         </action>
     </actions>
 </idea-plugin>
