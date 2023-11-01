@@ -25,7 +25,7 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="Bored Coder Helper" icon="AllIcons.Actions.IntentionBulbGrey" factoryClass="com.atif.learnintellijplugins.actions.ToolWindowFactory"/>
+        <toolWindow id="Your Friendly Tool" icon="AllIcons.Actions.IntentionBulbGrey" factoryClass="com.atif.learnintellijplugins.actions.ToolWindowFactory"/>
     </extensions>
 
     <actions>

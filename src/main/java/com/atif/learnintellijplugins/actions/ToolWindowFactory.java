@@ -17,17 +17,13 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         // Create a Swing component to display a label
-        JBLabel label = new JBLabel("Hi. If you're having trouble coding, talk to me and I'll make your feel better!");
+        JBLabel label = new JBLabel("Hello dear coder!");
 
         // Create a button
-        JButton button = new JButton("Why not!");
-        button.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Display a message when the button is clicked
-                JOptionPane.showMessageDialog(null, "You are not bored anymore!\nYou can continue coding!\nCongratulations!", "Button Clicked", JOptionPane.INFORMATION_MESSAGE);
-            }
+        JButton button = new JButton("Hello dear extension!");
+        button.addActionListener(e -> {
+            // Display a message when the button is clicked
+            JOptionPane.showMessageDialog(null, "Hello hello dear dear coder!", "Button Clicked", JOptionPane.INFORMATION_MESSAGE);
         });
 
         // Create a JPanel to hold the label and button

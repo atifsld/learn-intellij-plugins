@@ -29,7 +29,7 @@ public class ActionToPushSelectionToExtension extends AnAction {
 
             if (selectedText != null && !selectedText.isEmpty()) {
                 // Get a reference to the extension ny using the ID defined in plugin.xml
-                ToolWindow toolWindow = ToolWindowManager.getInstance(Objects.requireNonNull(project)).getToolWindow("Bored Coder Helper");
+                ToolWindow toolWindow = ToolWindowManager.getInstance(Objects.requireNonNull(project)).getToolWindow("Your Friendly Tool");
 
                 // Get the ToolWindow's ContentManager
                 ContentManager contentManager = Objects.requireNonNull(toolWindow).getContentManager();
