@@ -6,7 +6,7 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.ui.Messages;
 import org.jetbrains.annotations.NotNull;
 
-public class HelloWorldAction extends AnAction {
+public class ActionToPushSelectionToExtension extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         // Get the editor from the event

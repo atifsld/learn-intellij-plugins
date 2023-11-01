@@ -29,7 +29,7 @@
     </extensions>
 
     <actions>
-        <action id="helloworld" class="com.atif.learnintellijplugins.actions.HelloWorldAction" text="Hello World">
+        <action id="pushselection" class="com.atif.learnintellijplugins.actions.ActionToPushSelectionToExtension" text="Push Selection To Extension">
             <add-to-group group-id="EditorPopupMenu" anchor="first"></add-to-group>
         </action>
     </actions>
