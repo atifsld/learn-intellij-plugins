@@ -41,23 +41,15 @@ public class ActionToPushSelectionToExtension extends AnAction {
         // Get a reference to the extension ny using the ID defined in plugin.xml
         ToolWindow toolWindow = ToolWindowManager.getInstance(Objects.requireNonNull(project)).getToolWindow("Your Friendly Tool");
 
-        // Get the ToolWindow's ContentManager
+        // Get the ToolWindow's ContentManager and burrow in to find the JTextArea that is our text window
         ContentManager contentManager = Objects.requireNonNull(toolWindow).getContentManager();
-
         Content content = contentManager.getContent(0);
-
         SimpleToolWindowPanel panel = (SimpleToolWindowPanel) Objects.requireNonNull(content).getComponent();
-        System.out.println("SimpleToolWindowPanel:\n" + panel);
-
         JPanel jPanel = (JPanel) panel.getComponent(0);
-        System.out.println("JPanel:\n" + jPanel);
-
         JBScrollPane jbScrollPane = (JBScrollPane) jPanel.getComponent(2);
-        System.out.println("JBScrollPane:\n" + jbScrollPane);
-
         JTextArea todoListTextArea = (JTextArea) jbScrollPane.getViewport().getView();
-        System.out.println("JTextArea:\n" + todoListTextArea);
 
+        // Append selected text to the JTextArea field
         todoListTextArea.append(selectedText + "\n");
     }
 }
