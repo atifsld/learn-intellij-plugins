@@ -7,7 +7,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
-import com.intellij.ui.components.JBLabel;
+import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentManager;
 import org.jetbrains.annotations.NotNull;
@@ -28,17 +28,7 @@ public class ActionToPushSelectionToExtension extends AnAction {
             String selectedText = editor.getSelectionModel().getSelectedText();
 
             if (selectedText != null && !selectedText.isEmpty()) {
-                // Get a reference to the extension ny using the ID defined in plugin.xml
-                ToolWindow toolWindow = ToolWindowManager.getInstance(Objects.requireNonNull(project)).getToolWindow("Your Friendly Tool");
-
-                // Get the ToolWindow's ContentManager
-                ContentManager contentManager = Objects.requireNonNull(toolWindow).getContentManager();
-
-                // Currently I am unable to append sections to existing content, so I settle for removing existing content and attaching the updates
-                // We should try to change existing content at index from ContentManager instead
-                contentManager.removeAllContents(true);
-
-                replaceContentWithSelectedText(selectedText, contentManager);
+                addSelectionToExtensionView(project, selectedText);
             } else {
                 // TO-DO: Handling when no text is selected
             }
@@ -47,19 +37,27 @@ public class ActionToPushSelectionToExtension extends AnAction {
         }
     }
 
-    private static void replaceContentWithSelectedText(String selectedText, ContentManager contentManager) {
-        // Create a JPanel to hold the selected text
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        JBLabel label = new JBLabel(selectedText);
-        panel.add(label);
+    private static void addSelectionToExtensionView(Project project, String selectedText) {
+        // Get a reference to the extension ny using the ID defined in plugin.xml
+        ToolWindow toolWindow = ToolWindowManager.getInstance(Objects.requireNonNull(project)).getToolWindow("Your Friendly Tool");
 
-        // Create a content object to hold the JPanel
-        SimpleToolWindowPanel contentPanel = new SimpleToolWindowPanel(true, true);
-        contentPanel.setContent(panel);
-        Content content = contentManager.getFactory().createContent(contentPanel, "", false);
+        // Get the ToolWindow's ContentManager
+        ContentManager contentManager = Objects.requireNonNull(toolWindow).getContentManager();
 
-        // Finally, give the content to the ContentManager
-        contentManager.addContent(content);
+        Content content = contentManager.getContent(0);
+
+        SimpleToolWindowPanel panel = (SimpleToolWindowPanel) Objects.requireNonNull(content).getComponent();
+        System.out.println("SimpleToolWindowPanel:\n" + panel);
+
+        JPanel jPanel = (JPanel) panel.getComponent(0);
+        System.out.println("JPanel:\n" + jPanel);
+
+        JBScrollPane jbScrollPane = (JBScrollPane) jPanel.getComponent(2);
+        System.out.println("JBScrollPane:\n" + jbScrollPane);
+
+        JTextArea todoListTextArea = (JTextArea) jbScrollPane.getViewport().getView();
+        System.out.println("JTextArea:\n" + todoListTextArea);
+
+        todoListTextArea.append(selectedText + "\n");
     }
 }

@@ -4,6 +4,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.ui.components.JBLabel;
+import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentManager;
 import org.jetbrains.annotations.NotNull;
@@ -12,8 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFactory {
-
-    public JTextArea todoListTextArea;
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
@@ -39,9 +38,9 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
         panel.add(inputPanel, BorderLayout.SOUTH);
 
         // Create a JTextArea to display the to-do list
-        todoListTextArea = new JTextArea(10, 30);
+        JTextArea todoListTextArea = new JTextArea(10, 30);
         todoListTextArea.setEditable(false); // Make it read-only
-        JScrollPane scrollPane = new JScrollPane(todoListTextArea);
+        JBScrollPane scrollPane = new JBScrollPane(todoListTextArea);
 
         // Add the scrollPane to the center of the panel
         panel.add(scrollPane, BorderLayout.CENTER);
