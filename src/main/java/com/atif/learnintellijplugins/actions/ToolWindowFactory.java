@@ -9,28 +9,51 @@ import com.intellij.ui.content.ContentManager;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
 public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFactory {
+
+    public JTextArea todoListTextArea;
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         // Create a Swing component to display a label
-        JBLabel label = new JBLabel("Hello dear coder!");
+        JBLabel label = new JBLabel("To-Do List");
 
-        // Create a button
-        JButton button = new JButton("Hello dear extension!");
-        button.addActionListener(e -> {
-            // Display a message when the button is clicked
-            JOptionPane.showMessageDialog(null, "Hello hello dear dear coder!", "Button Clicked", JOptionPane.INFORMATION_MESSAGE);
+        // Create a JPanel with a BorderLayout to hold the label, text field, and button
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(label, BorderLayout.NORTH);
+
+        // Create a JPanel for the text field and button
+        JPanel inputPanel = new JPanel();
+
+        // Create a text field for entering to-do items
+        JTextField textField = new JTextField(20); // Reduce the width
+        inputPanel.add(textField);
+
+        // Create a button to save to-do items
+        JButton addButton = new JButton("Add To-Do");
+        inputPanel.add(addButton);
+
+        // Add the inputPanel to the bottom (SOUTH) of the panel
+        panel.add(inputPanel, BorderLayout.SOUTH);
+
+        // Create a JTextArea to display the to-do list
+        todoListTextArea = new JTextArea(10, 30);
+        todoListTextArea.setEditable(false); // Make it read-only
+        JScrollPane scrollPane = new JScrollPane(todoListTextArea);
+
+        // Add the scrollPane to the center of the panel
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Action listener for the "Add To-Do" button
+        addButton.addActionListener(e -> {
+            String todoItem = textField.getText();
+            if (!todoItem.isEmpty()) {
+                todoListTextArea.append(todoItem + "\n");
+                textField.setText(""); // Clear the text field after adding
+            }
         });
-
-        // Create a JPanel to hold the label and button
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.add(label);
-        panel.add(button);
 
         // Create a content object
         SimpleToolWindowPanel contentPanel = new SimpleToolWindowPanel(true, true);
