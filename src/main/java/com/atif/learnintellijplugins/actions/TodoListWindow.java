@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import java.awt.*;
 
-public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFactory {
+public class TodoListWindow implements com.intellij.openapi.wm.ToolWindowFactory {
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
