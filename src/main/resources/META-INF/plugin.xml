@@ -25,7 +25,18 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="To-do List" icon="AllIcons.Actions.IntentionBulbGrey" factoryClass="com.atif.learnintellijplugins.actions.TodoListWindow"/>
+        <toolWindow
+                id="Todo List"
+                icon="AllIcons.Actions.IntentionBulbGrey"
+                factoryClass="com.atif.learnintellijplugins.actions.TodoListWindow"
+        />
+
+        <applicationConfigurable
+                groupId="Todo List"
+                displayName="To-do List Extension Settings"
+                instance="com.atif.learnintellijplugins.settings.TodoExtensionSettingsPage"
+                id="TodoExtensionSettingsPage"
+        />
     </extensions>
 
     <actions>

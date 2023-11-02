@@ -1,5 +1,6 @@
 package com.atif.learnintellijplugins.actions;
 
+import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.openapi.wm.ToolWindow;
@@ -7,7 +8,9 @@ import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentManager;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,6 +69,9 @@ public class TodoListWindow implements com.intellij.openapi.wm.ToolWindowFactory
 
     @Override
     public void init(ToolWindow window) {
-        // Initialization code for your tool window.
+        // Here we could set and access the settings and make changes accordingly
+
+        // @Nullable @NonNls String settingValue = PropertiesComponent.getInstance().getValue("todoList.settingKey");
+        // PropertiesComponent.getInstance().setValue("todoList.settingKey", "Atif");
     }
 }
