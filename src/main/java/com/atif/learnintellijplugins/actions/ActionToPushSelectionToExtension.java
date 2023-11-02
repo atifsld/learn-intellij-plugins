@@ -39,7 +39,7 @@ public class ActionToPushSelectionToExtension extends AnAction {
 
     private static void addSelectionToExtensionView(Project project, String selectedText) {
         // Get a reference to the extension ny using the ID defined in plugin.xml
-        ToolWindow toolWindow = ToolWindowManager.getInstance(Objects.requireNonNull(project)).getToolWindow("Your Friendly Tool");
+        ToolWindow toolWindow = ToolWindowManager.getInstance(Objects.requireNonNull(project)).getToolWindow("To-do List");
 
         // Get the ToolWindow's ContentManager and burrow in to find the JTextArea that is our text window
         ContentManager contentManager = Objects.requireNonNull(toolWindow).getContentManager();
