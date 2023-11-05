@@ -11,6 +11,12 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+//    implementation("org.jetbrains.intellij.sdk", "203.7148.70")
+    implementation("org.openjfx:javafx-controls:17.0.2")
+    implementation("org.openjfx:javafx-fxml:17.0.2")
+}
+
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
